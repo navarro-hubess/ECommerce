@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Service;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,12 @@ namespace Api.Controllers
     public class CalculoJurosController : Controller
     {
         private readonly ITaxaJurosService _taxaJurosService;
-        public CalculoJurosController(ITaxaJurosService taxaJurosService)
+        private readonly ILogger<CalculoJurosController> _logger;
+        public CalculoJurosController(ITaxaJurosService taxaJurosService, 
+            ILogger<CalculoJurosController> logger)
         {
             _taxaJurosService = taxaJurosService;
+            _logger = logger;
         }
 
         /// <summary>
@@ -27,8 +31,18 @@ namespace Api.Controllers
         [Route("calculaJuros")]
         public async Task<IActionResult> CalcularJurosAsync([FromQuery] decimal valorInicial, [FromQuery] int tempo)
         {
-            var montante = await _taxaJurosService.CalcularMontanteAsync(valorInicial, tempo);
-            return Ok(montante);
+            _logger.LogInformation($"Info:Acesso ao endpoint de Calculo de Juros");
+            try
+            {
+                var montante = await _taxaJurosService.CalcularMontanteAsync(valorInicial, tempo);
+                return Ok(montante);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Erro depois de tentar acesso à API de Taxa");
+                throw;
+            }
+           
         }
 
         /// <summary>

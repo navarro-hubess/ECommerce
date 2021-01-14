@@ -70,8 +70,11 @@ namespace Api
             services.AddControllers();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, 
+            IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddFile("Logs/Ecommerce-{Date}.txt");
+
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
