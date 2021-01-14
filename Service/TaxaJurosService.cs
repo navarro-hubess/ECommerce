@@ -1,5 +1,4 @@
 ﻿using Config;
-using DecimalMath;
 using Domain;
 using Newtonsoft.Json;
 using System;
@@ -39,19 +38,12 @@ namespace Service
         public async Task<decimal> CalcularMontanteAsync(decimal valorInicial, int tempo)
         {
             decimal juros = await BuscarTaxa();
-            decimal valorFinal = Truncar(DecimalEx.Pow((1 + juros), tempo) * valorInicial);
-            return valorFinal;
+            Financial financial = new Financial();
+            return financial.CalculaJuros(valorInicial, tempo, juros); ;
 
         }
 
-        private decimal Truncar(decimal valor)
-        {
-            valor *= 100;
-            valor = Math.Truncate(valor);
-            valor /= 100;
 
-            return valor;
-        }
     }
 }
 

@@ -51,9 +51,12 @@ namespace Api.Controllers
         /// <returns>URL para repositórios</returns>
         [HttpGet]
         [Route("showmethecode")]
-        public string ShowMeTheCode()
+        public List<Uri> ShowMeTheCode()
         {
-            return "https://github.com/navarro-hubess/Solution1.Api1";
+            var repositorios = new List<Uri>();
+            repositorios.Add(new Uri("https://github.com/navarro-hubess/ECommerce"));
+            repositorios.Add(new Uri("https://github.com/navarro-hubess/ECommerce.Taxas"));
+            return repositorios;
         }
     }
 }

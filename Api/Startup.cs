@@ -52,8 +52,8 @@ namespace Api
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "API - Cálculo da taxa de Juros",
-                    Description = "Teste Softplan - API2",
+                    Title = "API para Cálculo da taxa de Juros",
+                    Description = "Teste Softplan",
                     Contact = new OpenApiContact
                     {
                         Name = "Fabio Navarro",
@@ -79,7 +79,7 @@ namespace Api
             app.UseSwaggerUI(c =>
             {
                 c.RoutePrefix = "swagger";
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "API2");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "API - cálculo de Juros");
             });
             if (env.IsDevelopment())
             {
