@@ -6,8 +6,8 @@
 ## Conceitos, Frameworks e tecnologias utilizadas:
 - em ASP.NET Core, C#, Clean Code, Rich Domain (DDD)
 - Documentação das Apis com Swagger
-1. Utilização de GIT com 2 Branchs 
-  - Master e Homolog
+- Utilização de GIT com 2 Branchs 
+	- Master e Homolog
 - Injeção de Dependência
 - Log usando Serilog 
 (Projeto Ecommerce => https://github.com/navarro-hubess/ECommerce)
